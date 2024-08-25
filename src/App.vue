@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SearchBoard/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchBoard from './components/SearchBoard.vue';
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SearchBoard
+  },
+  
+  computed: {
+    ...mapGetters(['getErrorsStack'])
+  },
+  watch: {
+    getErrorsStack() {
+      this.$toast.processNew(this.getErrorsStack[0])
+    }
+  },
+  methods: {
+    ...mapMutations(["pushNewToast"]),
+  },
+  mounted() {
+    this.pushNewToast({
+      header: 'Здесь будут выводиться ошибки и другие сообщения',
+      text: 'Это самодельный плагин'
+    })
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
