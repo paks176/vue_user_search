@@ -16,129 +16,26 @@
         <p class="mb-3 font-bigger fw-medium">
           Результаты
         </p>
-        <div class="results__list">
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem1" class="d-none">
-            <label for="thisItem1" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
+        <div class="results__list position-relative">
+          
+          <div v-if="loading" class="d-flex align-items-center justify-content-center">
+            <img src="@/assets/images/loader.gif" width="179" height="89" alt="Loading...">
           </div>
           
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
+          <div v-else>
+            <div v-for="item in getAllResults" :key="item.id">
+              <div class="results__list--item">
+                <input type="radio" name="currentSelect" :id="item.id" class="d-none">
+                <label :for="item.id" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
+                  <div class="results__list--image flex-shrink-0"></div>
+                  <div class="results__list--text ease-animation p-3 w-100">
+                    <p class="mb-2 fw-medium">{{item.name}}</p>
+                    <p>{{item.email}}</p>
+                  </div>
+                </label>
               </div>
-            </label>
+            </div>
           </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem1" class="d-none">
-            <label for="thisItem1" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem1" class="d-none">
-            <label for="thisItem1" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem1" class="d-none">
-            <label for="thisItem1" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem1" class="d-none">
-            <label for="thisItem1" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-
-          <div class="results__list--item">
-            <input type="radio" name="currentSelect" id="thisItem2" class="d-none">
-            <label for="thisItem2" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-              <div class="results__list--image flex-shrink-0"></div>
-              <div class="results__list--text ease-animation p-3 w-100">
-                <p class="mb-2 fw-medium">Bret</p>
-                <p>Sincere@april.biz</p>
-              </div>
-            </label>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -146,6 +43,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
   name: 'SideBar',
   data() {
@@ -153,30 +53,37 @@ export default {
       loading: false,
     }
   },
+  computed: {
+    ...mapGetters(['getAllResults']),
+  },
   methods: {
+    ...mapActions(['startSearch']),
     transformForRequest(value) {
-      if (value.length) {
-        let result = [];
-        const resultComma = value.split(/\s*(?:,|$)\s*/);
-        if (resultComma.length === 1) {
-          result.push(resultComma.split(' '));
-        } else {
-          resultComma.forEach(el => {
-            let splitted = el.split(' ');
-            if (splitted.length) {
-              result.push(splitted);
-            }
-          })
+      setTimeout(() => {
+        if (value.length) {
+          let result = [];
+          const resultComma = value.split(/\s*(?:,|$)\s*/);
+          if (resultComma.length === 1) {
+            result.push(resultComma[0].split(' '));
+          } else {
+            resultComma.forEach(el => {
+              let splitted = el.split(' ');
+              if (splitted.length) {
+                result.push(splitted);
+              }
+            })
+          }
+          this.startSearch(result.flat(Infinity)).then(() => console.log(this.getAllResults));
         }
-        result = result.flat(Infinity)
-        console.log(result)
-      }
+      }, 1500)
+      
     }
   },
+  mounted() {
+  }
 }
-    
-// один два три четыре,
-
+// bret
+// 1, 2 ,3
 </script>
 
 <style scoped lang="scss">

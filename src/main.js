@@ -9,8 +9,10 @@ import store from '@/store';
 
 // plugins
 import Toast from '@/plugins/toasts';
+import Serialize from '@/plugins/serialize';
 
 Vue.use(Toast);
+Vue.use(Serialize);
 
 Vue.config.productionTip = false
 
