@@ -57,23 +57,29 @@
 }
 
 html > * {
-  font-family: "Inter", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 14px;
-  color: #000;
+  color: #333;
   font-weight: 400;
-  line-height: 143%;
+  line-height: 106%;
 }
 
 body {
+  font-family: "Montserrat", sans-serif !important;
   min-height: 100vh;
 }
 
 #app {
   min-height: 100vh;
   background-color: #fff;
+  padding: 50px;
+  max-width: 1266px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 h1 {
+  font-family: Montserrat, sans-serif;
   font-weight: 700;
   font-size: 32px;
   color: #e31f24;
@@ -81,6 +87,7 @@ h1 {
 
 a {
   text-decoration: none;
+  color: #333;
 }
 
 p {
@@ -95,6 +102,26 @@ p {
 .rounded-8 {
   border-radius: 10px;
   overflow: hidden;
+}
+
+.ease-animation {
+  transition: all 0.3s ease;
+}
+
+.font-bigger {
+  font-size: 16px;
+}
+
+.fw-medium {
+  font-weight: 600 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.text-grey {
+  color: #76787d;
 }
 
 /*# sourceMappingURL=global-styles.css.map */
