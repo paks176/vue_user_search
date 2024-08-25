@@ -5,9 +5,13 @@
         <p class="mb-3 font-bigger fw-medium">
           Поиск сотрудников
         </p>
-        <input class="rounded-8" type="text" placeholder="Enter name or ID">
+        <input
+            class="rounded-8"
+            type="text"
+            placeholder="Enter name or ID"
+            @input="transformForRequest($event.target.value)"
+        >
       </div>
-      
       <div class="results">
         <p class="mb-3 font-bigger fw-medium">
           Результаты
@@ -142,6 +146,36 @@
 </template>
 
 <script>
+export default {
+  name: 'SideBar',
+  data() {
+    return {
+      loading: false,
+    }
+  },
+  methods: {
+    transformForRequest(value) {
+      if (value.length) {
+        let result = [];
+        const resultComma = value.split(/\s*(?:,|$)\s*/);
+        if (resultComma.length === 1) {
+          result.push(resultComma.split(' '));
+        } else {
+          resultComma.forEach(el => {
+            let splitted = el.split(' ');
+            if (splitted.length) {
+              result.push(splitted);
+            }
+          })
+        }
+        result = result.flat(Infinity)
+        console.log(result)
+      }
+    }
+  },
+}
+    
+// один два три четыре,
 
 </script>
 

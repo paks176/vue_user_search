@@ -6,8 +6,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         errorsStack: [],
+        usersResult: [],
+        userNameResult: [],
+        idResult: [],
+        domain: 'https://jsonplaceholder.typicode.com/',
     },
     actions: {
+        // startSearch(value) {
+        //    
+        // }
     },
     mutations: {
         pushNewToast(state, toast) {
@@ -18,5 +25,8 @@ export default new Vuex.Store({
         getErrorsStack(state) {
             return state.errorsStack;
         },
+        getAllResults(state) {
+            return state.usersResult.concat(state.userNameResult, state.idResult);
+        }
     }
 });
