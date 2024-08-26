@@ -1,8 +1,10 @@
 <template>
-  <div 
+  <div
       class="user-info w-100 position-relative" 
       :class="{'d-flex justify-content-center align-items-center': !Object.keys(selectedProperties).length }">
-    <div v-if="loading" class="loading w-100 d-flex align-items-center justify-content-center position-absolute ease-animation">
+    <div 
+        v-if="loading" 
+        class="loading w-100 d-flex align-items-center justify-content-center position-absolute ease-animation">
       <img src="@/assets/images/loader.gif" width="179" height="89" alt="Loading...">
     </div>
     

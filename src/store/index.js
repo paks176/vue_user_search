@@ -82,7 +82,6 @@ export default new Vuex.Store({
             });
         },
         addToSelected(context, id) {
-            console.log(context)
             const thisItem = context.state.allResults.find(item => item.id === id);
             if (thisItem) {
                 context.commit('addSelected', thisItem);

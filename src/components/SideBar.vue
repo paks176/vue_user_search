@@ -26,14 +26,26 @@
               <div class="results__list--item">
                 <input type="radio" name="currentSelect" :id="item.id" class="d-none" @change="selectThis(item.id)">
                 <label :for="item.id" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
-                  <div class="results__list--image flex-shrink-0"></div>
+                  <div class="results__list--image flex-shrink-0">
+                    <img v-if="item.image" :src="item.image" :alt="item.name">
+                    <img v-else src="@/assets/images/user_search.png" alt="item.name">
+                  </div>
                   <div class="results__list--text ease-animation p-3 w-100">
                     <p class="mb-2 fw-medium">{{item.name}}</p>
                     <p>{{item.email}}</p>
                   </div>
                 </label>
               </div>
-            </div>
+          </div>
+          
+          <div v-if="!getAllResults.length && !search?.value">
+            Начните поиск
+          </div>
+
+          <div v-else-if="!getAllResults.length && search?.value">
+            Ничего не найдено
+          </div>
+          
         </div>
       </div>
     </div>
@@ -58,7 +70,7 @@ export default {
   },
   methods: {
     ...mapActions(['startSearch', 'addToSelected']),
-    ...mapMutations(['clearResult']),
+    ...mapMutations(['clearResult', 'clearSelected']),
     setResultsHeight() {
       const sidebar = this.$el;
       if (sidebar) {
@@ -93,6 +105,7 @@ export default {
           });
         } else {
           this.clearResult();
+          this.clearSelected();
           this.loading = false;
         }
       }, 1000)
@@ -102,7 +115,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$el)
     this.setResultsHeight();
     this.search = this.$el.querySelector("#searchInput");
     window.addEventListener('resize', () => {
@@ -170,6 +182,10 @@ export default {
         width: 70px;
         height: 70px;
         border-right: 1px solid $grey1;
+        & img {
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
   }
