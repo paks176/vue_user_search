@@ -14,17 +14,15 @@
         >
       </div>
       <div class="results">
-        <p class="mb-3 font-bigger fw-medium">
+        <p class="mb-3 font-bigger fw-medium results__header">
           Результаты
         </p>
         <div class="results__list position-relative">
           
-          <div v-if="loading" class="d-flex align-items-center justify-content-center">
+          <div v-if="loading" class="loading w-100 d-flex align-items-center justify-content-center position-absolute ease-animation">
             <img src="@/assets/images/loader.gif" width="179" height="89" alt="Loading...">
           </div>
-          
-          <div v-else>
-            <div v-for="item in getAllResults" :key="item.id">
+          <div v-for="item in getAllResults" :key="item.id">
               <div class="results__list--item">
                 <input type="radio" name="currentSelect" :id="item.id" class="d-none">
                 <label :for="item.id" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
@@ -36,7 +34,6 @@
                 </label>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -46,6 +43,7 @@
 <script>
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: 'SideBar',
@@ -60,7 +58,22 @@ export default {
   },
   methods: {
     ...mapActions(['startSearch']),
+    ...mapMutations(['clearResult']),
+    setResultsHeight() {
+      const sidebar = this.$el;
+      if (sidebar) {
+        
+        const search = sidebar.querySelector('.search');
+        if (search) {
+          const resultsList = sidebar.querySelector('.results__list');
+          const sidebarHeight = sidebar.offsetHeight;
+          const searchHeight = search.offsetHeight;
+          resultsList.style.height = sidebarHeight - 40 - searchHeight + 'px';
+        }
+      }
+    },
     transformForRequest() {
+      this.loading = true;
       setTimeout(() => {
         if (this.search.value.length) {
           let result = [];
@@ -75,14 +88,26 @@ export default {
               }
             })
           }
-          this.startSearch(result.flat(Infinity)).then(() => {});
+          this.startSearch(result.flat(Infinity)).then(() => {
+            this.loading = false;
+          });
+        } else {
+          this.clearResult();
+          this.loading = false;
         }
-      }, 1500)
+      }, 1000)
       
     }
   },
   mounted() {
+    console.log(this.$el)
+    this.setResultsHeight();
     this.search = this.$el.querySelector("#searchInput");
+    window.addEventListener('resize', () => {
+      setTimeout(() => {
+        this.setResultsHeight();
+      }, 1500)
+    })
   }
 }
 // bret
@@ -94,11 +119,14 @@ export default {
 
 .sidebar {
   &__wrapper {
-    padding: 27px 31px 0 20px;
     border-right: 1px solid $grey1;
     height: 100%;
   }
+  & .search {
+    padding: 27px 30px 30px 20px
+  }
   & input {
+    width: 100%;
     padding: 16px 24px;
     background-color: $white;
     border: 1.50px solid $grey2;
@@ -110,7 +138,14 @@ export default {
     }
   }
   .results {
+    &__header {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
     &__list {
+      width: 372px;
+      padding: 10px 30px 0 20px;
+      overflow-y: auto;
       &--item {
         & input:checked {
           & + .results__list--item--body {

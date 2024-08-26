@@ -124,4 +124,9 @@ p {
   color: #76787d;
 }
 
+.loading {
+  height: 300px;
+  background: radial-gradient(circle, rgb(255, 255, 255) 18%, rgba(255, 255, 255, 0) 100%);
+}
+
 /*# sourceMappingURL=global-styles.css.map */

@@ -69,3 +69,8 @@ p {
 .text-grey {
   color: $grey3;
 }
+
+.loading {
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 18%, rgba(255, 255, 255, 0) 100%);
+}

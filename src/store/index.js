@@ -99,8 +99,10 @@ export default new Vuex.Store({
                     state.allResults.push(item);
                 }
             })
+        },
+        clearResult(state) {
+            state.allResults = [];
         }
-
     },
     getters: {
         getErrorsStack(state) {
