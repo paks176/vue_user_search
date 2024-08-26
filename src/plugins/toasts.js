@@ -151,6 +151,7 @@ export default {
             processAll() {
                 const errorsStack = Store.getters.getErrorsStack;
                 if (errorsStack.length > 0) {
+                    console.log(errorsStack)
                     let i = 0;
                     let queue = undefined;
                     processToast(i);

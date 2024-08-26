@@ -14,12 +14,23 @@
 <script>
 import SideBar from './SideBar';
 import UserInfo from './UserInfo';
+import {mapMutations} from "vuex";
 export default {
   name: 'SearchBoard',
   components: {
     SideBar,
     UserInfo,
   },
+  methods: {
+    ...mapMutations(['pushNewToast']),
+  },
+  mounted() {
+    this.pushNewToast({
+      type: 'warning',
+      header: 'Поддерживается одновременный поиск по Id и username',
+      text: 'В запросе можно комбинировать id и username. <br> К примеру: <b>bret 4 5</b>'
+    })
+  }
 }
 </script>
 

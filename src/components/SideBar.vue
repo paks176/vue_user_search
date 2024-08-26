@@ -42,7 +42,7 @@
             Начните поиск
           </div>
 
-          <div v-else-if="!getAllResults.length && search?.value">
+          <div v-else-if="!getAllResults.length && search?.value && !loading">
             Ничего не найдено
           </div>
           
@@ -85,6 +85,7 @@ export default {
       }
     },
     transformForRequest() {
+      this.clearResult();
       this.loading = true;
       setTimeout(() => {
         if (this.search.value.length) {
@@ -108,7 +109,7 @@ export default {
           this.clearSelected();
           this.loading = false;
         }
-      }, 1000)
+      }, 500)
     },
     selectThis(id) {
       this.addToSelected(id)
@@ -124,8 +125,6 @@ export default {
     })
   }
 }
-// bret
-// 1, 2 ,3
 </script>
 
 <style scoped lang="scss">

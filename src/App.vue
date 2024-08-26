@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <SearchBoard/>
+    <div class="toast-container"></div>
   </div>
 </template>
 
@@ -26,10 +27,6 @@ export default {
     ...mapMutations(["pushNewToast"]),
   },
   mounted() {
-    this.pushNewToast({
-      header: 'Здесь будут выводиться ошибки и другие сообщения',
-      text: 'Это самодельный плагин'
-    })
   }
 }
 </script>
