@@ -82,7 +82,11 @@ export default new Vuex.Store({
             });
         },
         addToSelected(context, id) {
-            
+            console.log(context)
+            const thisItem = context.state.allResults.find(item => item.id === id);
+            if (thisItem) {
+                context.commit('addSelected', thisItem);
+            }
         }
     },
     mutations: {
@@ -99,6 +103,12 @@ export default new Vuex.Store({
         },
         clearResult(state) {
             state.allResults = [];
+        },
+        addSelected(state, item) {
+            state.selected = item;
+        },
+        clearSelected(state) {
+            state.selected = {};
         }
     },
     getters: {
@@ -107,6 +117,9 @@ export default new Vuex.Store({
         },
         getAllResults(state) {
             return state.allResults;
+        },
+        getSelected(state) {
+            return state.selected;
         }
     }
 });

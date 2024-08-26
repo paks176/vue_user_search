@@ -9,7 +9,7 @@
             id="searchInput"
             class="rounded-8"
             type="text"
-            placeholder="Enter name or ID"
+            placeholder="Введите Id или имя"
             @input="transformForRequest"
         >
       </div>
@@ -57,7 +57,7 @@ export default {
     ...mapGetters(['getAllResults']),
   },
   methods: {
-    ...mapActions(['startSearch']),
+    ...mapActions(['startSearch', 'addToSelected']),
     ...mapMutations(['clearResult']),
     setResultsHeight() {
       const sidebar = this.$el;
@@ -98,7 +98,7 @@ export default {
       }, 1000)
     },
     selectThis(id) {
-      
+      this.addToSelected(id)
     }
   },
   mounted() {
