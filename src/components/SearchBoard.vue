@@ -28,8 +28,8 @@ export default {
 .searchboard {
   &__wrapper {
     box-shadow: $shadow;
+    height: calc(100vh - 170px);
     max-height: calc(100vh - 170px);
-    height: 100%;
   }
 }
 

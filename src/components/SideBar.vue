@@ -6,10 +6,11 @@
           Поиск сотрудников
         </p>
         <input
+            id="searchInput"
             class="rounded-8"
             type="text"
             placeholder="Enter name or ID"
-            @input="transformForRequest($event.target.value)"
+            @input="transformForRequest"
         >
       </div>
       <div class="results">
@@ -51,6 +52,7 @@ export default {
   data() {
     return {
       loading: false,
+      search: null,
     }
   },
   computed: {
@@ -58,11 +60,11 @@ export default {
   },
   methods: {
     ...mapActions(['startSearch']),
-    transformForRequest(value) {
+    transformForRequest() {
       setTimeout(() => {
-        if (value.length) {
+        if (this.search.value.length) {
           let result = [];
-          const resultComma = value.split(/\s*(?:,|$)\s*/);
+          const resultComma = this.search.value.split(/\s*(?:,|$)\s*/);
           if (resultComma.length === 1) {
             result.push(resultComma[0].split(' '));
           } else {
@@ -73,13 +75,14 @@ export default {
               }
             })
           }
-          this.startSearch(result.flat(Infinity)).then(() => console.log(this.getAllResults));
+          this.startSearch(result.flat(Infinity)).then(() => {});
         }
       }, 1500)
       
     }
   },
   mounted() {
+    this.search = this.$el.querySelector("#searchInput");
   }
 }
 // bret
