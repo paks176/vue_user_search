@@ -1,9 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-
 // returns true if duplicates are exist else false
-/* eslint-disable no-debugger */
 function checkDuplicates(newItem, allResults) {
     let result = false;
     if (allResults.length) {
@@ -18,21 +16,17 @@ function checkDuplicates(newItem, allResults) {
     return result;
 }
 
-/* eslint-disable no-debugger */
-
-/* eslint-disable no-debugger */
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         errorsStack: [],
         allResults: [],
+        selected: {},
         domain: 'https://jsonplaceholder.typicode.com/users',
     },
     actions: {
         startSearch(context, value) {
-
             let idRequests = [];
             value.forEach(item => {
                 if (!isNaN(Number(item))) {
@@ -86,6 +80,9 @@ export default new Vuex.Store({
                     text: String(error)
                 })
             });
+        },
+        addToSelected(context, id) {
+            
         }
     },
     mutations: {

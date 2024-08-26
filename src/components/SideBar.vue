@@ -24,7 +24,7 @@
           </div>
           <div v-for="item in getAllResults" :key="item.id">
               <div class="results__list--item">
-                <input type="radio" name="currentSelect" :id="item.id" class="d-none">
+                <input type="radio" name="currentSelect" :id="item.id" class="d-none" @change="selectThis(item.id)">
                 <label :for="item.id" class="results__list--item--body d-flex rounded-10 cursor-pointer mb-3 ease-animation">
                   <div class="results__list--image flex-shrink-0"></div>
                   <div class="results__list--text ease-animation p-3 w-100">
@@ -96,6 +96,8 @@ export default {
           this.loading = false;
         }
       }, 1000)
+    },
+    selectThis(id) {
       
     }
   },
@@ -146,6 +148,7 @@ export default {
       width: 372px;
       padding: 10px 30px 0 20px;
       overflow-y: auto;
+      overflow-x: hidden;
       &--item {
         & input:checked {
           & + .results__list--item--body {
